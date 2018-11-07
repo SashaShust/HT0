@@ -3,6 +3,7 @@ package com.epam.prj01.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.epam.prj01.exception.IlluminanceTooMuchException;
 import com.epam.prj01.exception.SpaceUsageTooMuchException;
 
 public class Room {
@@ -148,7 +149,7 @@ public class Room {
 			describe += " (" + (sumFurnitureSquare() + sumFromFurnitureSquare()) + " - "
 					+ (sumFurnitureSquare() + sumToFurnitureSquare()) + " m^2 are occupied, guaranteed free "
 					+ (square - sumFurnitureSquare() - sumToFurnitureSquare()) + " m^2 or "
-					+ (square - sumToFurnitureSquare()) + " % of the area)";
+					+ (100 * sumToFurnitureSquare() / square) + " % of the area)";
 		}
 		describe += "\n" + "  Furniture: ";
 		if ((furnitureList != null) && (furnitureList.size() == 0)) {
@@ -168,7 +169,11 @@ public class Room {
 		return describe;
 	}
 
-	public Room addLight(Lightbulb bulb) {
+	public Room addLight(Lightbulb bulb) throws IlluminanceTooMuchException {
+		if (sumIlluminance() > 4000) {
+			throw new IlluminanceTooMuchException(
+					"Error! So much Illuminance can not be in this room (max value is 4000 lux)");
+		}
 		lightsList.add(bulb);
 		return this;
 	}
@@ -189,13 +194,4 @@ public class Room {
 		furnitureList.add(f);
 		return this;
 	}
-	/*
-	 * public double[] sumFromToFurnitureSquare() { double[]
-	 * resultSumFromToFurnitureSquare = new double[2];
-	 * resultSumFromToFurnitureSquare[0] = 0; resultSumFromToFurnitureSquare[1]
-	 * = 0; if ((furnitureList != null) && (furnitureList.size() > 0)) { for
-	 * (Furniture furniture : furnitureList) { resultSumFromToFurnitureSquare[0]
-	 * += furniture.getFromSquare(); resultSumFromToFurnitureSquare[1] +=
-	 * furniture.getSquare(); } } return resultSumFromToFurnitureSquare; }
-	 */
 }
