@@ -5,9 +5,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.epam.prj02.bean.Mp3File;
 
 public class HTMLGenerator {
+	static Logger logger = LogManager.getLogger(HTMLGenerator.class);
+
 	public StringBuilder buildHTML(List<Mp3File> mp3FileList) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<!DOCTYPE html>").append("<html>").append("<head>").append("<title>HTML GENERATOR</title>")
@@ -34,13 +39,13 @@ public class HTMLGenerator {
 			writer = new FileWriter(file);
 			writer.write(mp3);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("Error at the time of generating html File", e);
 		} finally {
 			if (writer != null) {
 				try {
 					writer.close();
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					logger.error("Error at the time of generating html File", e1);
 				}
 			}
 		}

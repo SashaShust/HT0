@@ -17,7 +17,6 @@ public class Main {
 	static Logger logger = LogManager.getLogger(Main.class);
 
 	public static void main(String[] args) {
-		// logger.error("error");
 
 		OperationWithMp3 operationWithMp3 = new OperationWithMp3();
 		File folder = new File("c:\\test\\mp3\\");

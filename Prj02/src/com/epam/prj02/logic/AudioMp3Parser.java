@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
@@ -17,10 +19,10 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.epam.prj02.bean.Mp3File;
 
 public class AudioMp3Parser {
-	public Mp3File mp3FileParser(File file) throws IOException, SAXException, TikaException {
-		// Mp3File mp3File = new Mp3File();
+	static Logger logger = LogManager.getLogger(AudioMp3Parser.class);
 
-		// String fileLocation = "C:/test/mp3/Sleepmakeswaves.mp3";
+	public Mp3File mp3FileParser(File file) throws IOException, SAXException, TikaException {
+
 		Mp3File mp3File = null;
 		InputStream input = null;
 		try {
@@ -36,7 +38,7 @@ public class AudioMp3Parser {
 			String[] metadataNames = metadata.names();
 
 			for (String name : metadataNames) {
-				System.out.println(name + ": " + metadata.get(name));
+				// System.out.println(name + ": " + metadata.get(name));
 			}
 
 			// Retrieve the necessary info from metadata
@@ -62,7 +64,7 @@ public class AudioMp3Parser {
 				try {
 					input.close();
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					logger.error("Error during parsing", e1);
 				}
 			}
 		}
