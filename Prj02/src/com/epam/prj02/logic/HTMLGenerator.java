@@ -12,17 +12,18 @@ import com.epam.prj02.bean.Mp3File;
 
 public class HTMLGenerator {
 	static Logger logger = LogManager.getLogger(HTMLGenerator.class);
+	public static final String DEFAULT = "N/A";
 
 	public StringBuilder buildHTML(List<Mp3File> mp3FileList) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<!DOCTYPE html>").append("<html>").append("<head>").append("<title>HTML GENERATOR</title>")
 				.append("</head>").append("<body>").append("<table border='1'>");
 		for (Mp3File mp3File : mp3FileList) {
-			String artist = (mp3File.getArtist() != null) ? mp3File.getArtist() : "N/A";
-			String album = (mp3File.getAlbum() != null) ? mp3File.getAlbum() : "N/A";
-			String name = (mp3File.getName() != null) ? mp3File.getName() : "N/A";
+			String artist = (mp3File.getArtist() != null) ? mp3File.getArtist() : DEFAULT;
+			String album = (mp3File.getAlbum() != null) ? mp3File.getAlbum() : DEFAULT;
+			String name = (mp3File.getName() != null) ? mp3File.getName() : DEFAULT;
 			double duration = (mp3File.getDuration() != 0) ? mp3File.getDuration() : 0;
-			String path = (mp3File.getPath() != null) ? mp3File.getPath() : "N/A";
+			String path = (mp3File.getPath() != null) ? mp3File.getPath() : DEFAULT;
 			sb.append("<tr><td>").append(artist).append("</td><td>").append(album).append("</td><td>").append(name)
 					.append("</td><td>").append(duration).append("</td><td>").append(path).append("</td></tr>");
 		}
