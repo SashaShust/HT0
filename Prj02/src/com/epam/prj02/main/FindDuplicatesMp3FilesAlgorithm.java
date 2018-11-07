@@ -12,7 +12,7 @@ public class FindDuplicatesMp3FilesAlgorithm {
 	public List<Mp3File> findMetadataDuplicates(List<Mp3File> literList) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		for (Mp3File file : literList) {
-			String key = file.getName() + file.getAlbum() + file.getDuration();
+			String key = file.getArtist() + file.getAlbum() + file.getName();
 			if (!map.containsKey(key)) {
 				map.put(key, 1);
 			} else {
@@ -22,7 +22,7 @@ public class FindDuplicatesMp3FilesAlgorithm {
 
 		List<Mp3File> resultList = new ArrayList<Mp3File>(literList);
 		for (Mp3File file : literList) {
-			String key = file.getName() + file.getAlbum() + file.getDuration();
+			String key = file.getArtist() + file.getAlbum() + file.getName();
 			if (map.get(key) == 1) {
 				resultList.remove(file);
 			}

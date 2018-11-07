@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
@@ -47,9 +48,15 @@ public class AudioMp3Parser {
 			String album = metadata.get("xmpDM:album");
 			String name = metadata.get("title");
 			String textDuration = metadata.get("xmpDM:duration");
+			// file.length();
+
+			FileInputStream fis = new FileInputStream(file);
+			String checkSum = DigestUtils.md5Hex(fis);
+			fis.close();
+
 			double duration = Double.parseDouble(textDuration);
 
-			mp3File = new Mp3File(artist, album, name, duration, file.getAbsolutePath());
+			mp3File = new Mp3File(artist, album, name, duration, file.getAbsolutePath(), checkSum);
 		} finally {
 			if (input != null) {
 				try {
