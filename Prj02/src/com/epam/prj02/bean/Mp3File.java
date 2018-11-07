@@ -6,18 +6,20 @@ public class Mp3File {
 	private String name;
 	private double duration;
 	private String path;
+	private String checkSum;
 
 	public Mp3File() {
 		super();
 	}
 
-	public Mp3File(String artist, String album, String name, double duration, String path) {
+	public Mp3File(String artist, String album, String name, double duration, String path, String checkSum) {
 		super();
 		this.artist = artist;
 		this.album = album;
 		this.name = name;
 		this.duration = duration;
 		this.path = path;
+		this.checkSum = checkSum;
 	}
 
 	public String getArtist() {
@@ -60,10 +62,17 @@ public class Mp3File {
 		this.path = path;
 	}
 
+	public String getCheckSum() {
+		return checkSum;
+	}
+
+	public void setCheckSum(String checkSum) {
+		this.checkSum = checkSum;
+	}
+
 	@Override
 	public String toString() {
 		return "Mp3File [artist=" + artist + ", album=" + album + ", name=" + name + ", duration=" + duration
-				+ ", path=" + path + "]";
+				+ ", path=" + path + ", checkSum=" + checkSum + "]";
 	}
-
 }
