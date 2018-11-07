@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.epam.prj02.bean.Mp3File;
 import com.epam.prj02.logic.FindDuplicatesCheckSumAlgorithm;
+import com.epam.prj02.logic.FindDuplicatesMp3FilesAlgorithm;
 import com.epam.prj02.logic.HTMLGenerator;
 import com.epam.prj02.logic.OperationWithMp3;
 

@@ -7,11 +7,12 @@ import java.util.Map;
 
 import com.epam.prj02.bean.Mp3File;
 
-public class FindDuplicatesCheckSumAlgorithm {
-	public List<Mp3File> findCheckSumDuplicates(List<Mp3File> literList) {
+public class FindDuplicatesMp3FilesAlgorithm {
+
+	public List<Mp3File> findMetadataDuplicates(List<Mp3File> literList) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		for (Mp3File file : literList) {
-			String key = file.getCheckSum();
+			String key = file.getArtist() + file.getAlbum() + file.getName();
 			if (!map.containsKey(key)) {
 				map.put(key, 1);
 			} else {
@@ -21,7 +22,7 @@ public class FindDuplicatesCheckSumAlgorithm {
 
 		List<Mp3File> resultList = new ArrayList<Mp3File>(literList);
 		for (Mp3File file : literList) {
-			String key = file.getCheckSum();
+			String key = file.getArtist() + file.getAlbum() + file.getName();
 			if (map.get(key) == 1) {
 				resultList.remove(file);
 			}
@@ -29,4 +30,5 @@ public class FindDuplicatesCheckSumAlgorithm {
 
 		return resultList;
 	}
+
 }
